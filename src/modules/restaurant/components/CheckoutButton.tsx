@@ -41,7 +41,6 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
       </DialogTrigger>
       <DialogContent className="max-w-[425px] md:min-w-[700px] bg-gray-50">
         <UserProfileForm
-          currentUser={userData?.userData}
           onSave={onCheckout}
           title="Confirm Deliery Details"
           buttonText="Continue to payment"

@@ -3,7 +3,6 @@ import HomePage from './pages/HomePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import UserProfile from './pages/UserProfile';
 import ProtectedRoute from '../utils/ProtectedRoute';
-import SearchPage from './pages/SearchPage';
 import RestaurantDetails from './pages/RestaurantDetails';
 import OrderStatus from './pages/OrderStatus';
 import Login from './pages/auth/Login';
@@ -22,7 +21,6 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/not-found" element={<NotFound />} />
             <Route path="/" element={<HomePage />} />
-            <Route path="/search/:city" element={<SearchPage />} />
             <Route path="/restaurant/:id" element={<RestaurantDetails />} />
             <Route path="/branches" element={<Branches />} />
             <Route element={<ProtectedRoute />}>

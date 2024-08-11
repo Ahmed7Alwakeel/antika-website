@@ -10,7 +10,6 @@ import MenuItemWrapper from "../../modules/restaurant/components/MenuItemWrapper
 import OrderSummary from "../../modules/restaurant/components/OrderSummary";
 import CheckoutButton from "../../modules/restaurant/components/CheckoutButton";
 import { useCreateCheckoutSession } from "../../modules/order/api/API";
-import SearchPage from "./SearchPage";
 import CategoryFilter from "./CategoryFilter";
 
 export type CartItem = {
@@ -26,7 +25,7 @@ const RestaurantDetails = () => {
     const [refetch, setRefetch] = useState(false)
     const { menu } = useGetMenu(selectedCuisines, refetch);
     const { cuisines } = useGetCuisines();
-    const { restaurant } = useGetSingleRestaurant(id);
+    const { restaurant } = useGetSingleRestaurant(id!);
     const { createCheckoutSession, isLoading: isCheckoutLoading } =
         useCreateCheckoutSession();
 

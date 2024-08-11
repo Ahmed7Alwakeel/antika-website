@@ -16,15 +16,15 @@ const useAxiosLoader = () => {
 
     const interceptors = useMemo(
         () => ({
-            request: config => {
+            request: (config:any) => {
                 inc();
                 return config;
             },
-            response: response => {
+            response: (response:any) => {
                 dec();
                 return response;
             },
-            error: error => {
+            error: (error:any) => {
                 dec();
                 return Promise.reject(error);
             }
@@ -39,10 +39,10 @@ const useAxiosLoader = () => {
         ax.interceptors.response.use(interceptors.response, interceptors.error);
         return () => {
             // remove all intercepts when done
-            ax.interceptors.request.eject(interceptors.request);
-            ax.interceptors.request.eject(interceptors.error);
-            ax.interceptors.response.eject(interceptors.response);
-            ax.interceptors.response.eject(interceptors.error);
+            ax.interceptors.request.eject(interceptors.request as any);
+            ax.interceptors.request.eject(interceptors.error as any);
+            ax.interceptors.response.eject(interceptors.response as any);
+            ax.interceptors.response.eject(interceptors.error as any);
         };
     }, [interceptors]);
 

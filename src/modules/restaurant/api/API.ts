@@ -1,6 +1,5 @@
 import { useQuery } from "react-query"
 import { API_URL } from "../../../config/APIs"
-import { SearchState } from "../../../app/pages/SearchPage"
 import { generalGet } from "../../../API/api"
 import axios from "axios"
 
@@ -51,7 +50,7 @@ export const useGetBranchesWithin = () => {
 }
 
 export const useSearchRestaurants = (
-	searchState: SearchState,
+	searchState: any,
 	city?: string
 ) => {
 	const createSearchRequest = async (): Promise<any> => {

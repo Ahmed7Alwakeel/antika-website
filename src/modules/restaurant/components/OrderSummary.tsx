@@ -11,7 +11,7 @@ type Props = {
     restaurant: Restaurant;
     cartItems: CartItem[];
     removeFromCart: (cartItem: CartItem) => void;
-    setCartItems: (cartItem: CartItem[]) => void
+    setCartItems: any
     setToStorage: (updatedCart: CartItem[]) => void
 };
 
@@ -64,7 +64,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart, setCartItems, set
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
                 {cartItems.map((item) => (
-                    <div className="flex justify-between" key={item.name}> 
+                    <div className="flex justify-between" key={item.name}>
                         <span className="flex">
                             <Badge className="mr-2 cursor-pointer" onClick={() => removeOne(item)}>-</Badge>
                             <Badge variant="outline" className="">
