@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import UserProfile from './pages/UserProfile';
