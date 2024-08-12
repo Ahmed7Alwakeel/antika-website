@@ -6,17 +6,30 @@ import { Restaurant } from "../../modules/restaurant/types/types";
 
 const Branches = () => {
     const { restaurant } = useGetMyRestaurant()
-    const { restaurantsWithin } = useGetBranchesWithin()
+    const { restaurantsWithin, isLoading } = useGetBranchesWithin()
     const [unAvailable, setUnAvailable] = useState([])
+    const [customLoading,setCustomLoading]=useState(true)
 
     useEffect(() => {
         setUnAvailable(restaurant?.filter((res: Restaurant) => !restaurantsWithin?.some((r: Restaurant) => r._id == res._id)))
     }, [restaurant, restaurantsWithin])
 
+    useEffect(() => {
+        setTimeout(()=>{ 
+          setCustomLoading(false)
+        },2000)
+      }, [])
+
+    if (isLoading || customLoading) {
+        return <div className="spinner">
+            <div className="loader"></div>
+        </div>;
+    }
+
     return (
         <>
             <p className="mb-4 text-black">Note: Delivery Availability according to your location </p>
-            <div className="grid grid-cols-2 gap-5 group">
+            <div className="grid md:grid-cols-2 gap-5 group">
 
                 {restaurantsWithin?.map((item: { area: string, _id: string, city: string, estimatedDeliveryTime: number, deliveryPrice: number }, index: number) => (
                     <Link

@@ -1,7 +1,7 @@
 
 
 import { Card, CardFooter } from "../../components/ui/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetCuisines, useGetMenu, useGetSingleRestaurant } from "../../modules/restaurant/api/API";
 import { ICategory, IProduct } from "../../modules/restaurant/types/types";
@@ -25,7 +25,8 @@ const RestaurantDetails = () => {
     const [refetch, setRefetch] = useState(false)
     const { menu } = useGetMenu(selectedCuisines, refetch);
     const { cuisines } = useGetCuisines();
-    const { restaurant } = useGetSingleRestaurant(id!);
+    const { restaurant, isLoading } = useGetSingleRestaurant(id!);
+    const [customLoading,setCustomLoading]=useState(true)
     const { createCheckoutSession, isLoading: isCheckoutLoading } =
         useCreateCheckoutSession();
 
@@ -40,6 +41,12 @@ const RestaurantDetails = () => {
             JSON.stringify(updatedCart)
         );
     }
+   
+    useEffect(() => {
+        setTimeout(()=>{
+          setCustomLoading(false)
+        },2000)
+      }, [])
 
     const addToCart = (menuItem: IProduct) => {
 
@@ -122,7 +129,7 @@ const RestaurantDetails = () => {
         return (totalWithDelivery).toFixed(2);
     };
 
-    if (!menu) {
+    if (!menu || isLoading || customLoading) {
         return <div className="spinner">
             <div className="loader"></div>
         </div>;

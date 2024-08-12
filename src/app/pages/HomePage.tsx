@@ -1,6 +1,6 @@
 
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -9,11 +9,22 @@ const HomePage = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('order-status');
   const cancelled = searchParams.get('cancelled');
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     if (id) navigate(`/order-status/${id}`)
     if (cancelled) toast.error("Order cancelled")
   }, [id, cancelled])
+
+  useEffect(() => {
+    setTimeout(()=>{
+      setLoading(false)
+    },2000)
+  }, [])
+
+  if (loading) return <div className="spinner">
+  <div className="loader"></div>
+</div>
 
   return (
     <div className="flex flex-col gap-12">

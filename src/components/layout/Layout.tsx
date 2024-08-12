@@ -21,6 +21,7 @@ const Layout = ({ children }: Props) => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  
   useEffect(() => {
     if (Cookies.get("token")) {
       generalGet('/user/profile').then(res => {

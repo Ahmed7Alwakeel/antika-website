@@ -40,10 +40,9 @@ const CategoryFilter = ({
 
             <div className="space-y-2 flex flex-col">
                 {cuisinesList?.map((cuisine: string) => {
-                    // .slice(0, isExpanded ? cuisineList.length : 7)
                     const isSelected = selectedCuisines.includes(cuisine);
                     return (
-                        <div className="flex w-20 capitalize">
+                        <div className="flex w-20 capitalize" key={cuisine}>
                             <input
                                 id={`cuisine_${cuisine}`}
                                 type="checkbox"
@@ -54,7 +53,7 @@ const CategoryFilter = ({
                             />
                             <Label
                                 htmlFor={`cuisine_${cuisine}`}
-                                className={`flex flex-1 items-center cursor-pointer text-sm rounded-full px-4 py-2 font-semibold ${isSelected
+                                className={`min-w-28 flex flex-1 items-center cursor-pointer text-sm rounded-full px-4 py-2 font-semibold ${isSelected
                                     ? "border border-green-600 text-green-600"
                                     : "border border-slate-300"
                                     }`}

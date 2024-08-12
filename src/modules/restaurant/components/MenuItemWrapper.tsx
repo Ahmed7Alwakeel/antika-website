@@ -18,8 +18,8 @@ const MenuItemWrapper = ({ menuItem, addToCart }: Props) => {
         </CardTitle>
       </CardHeader>
       <div className="mb-4 flex flex-col gap-4">
-        {menuItem.products.map((item: IProduct) => (
-          <CardContent className="cursor-pointer flex flex-row items-center justify-between pb-0" onClick={() => addToCart(item)}>
+        {menuItem.products.map((item: IProduct,index:number) => (
+          <CardContent key={index} className="cursor-pointer flex flex-row items-center justify-between pb-0" onClick={() => addToCart(item)}>
             <p className="capitalize">{item.name}</p>
             <p>{item.price}$</p>
           </CardContent>
