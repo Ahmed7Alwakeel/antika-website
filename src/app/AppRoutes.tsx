@@ -35,7 +35,7 @@ const AppRoutes = () => {
                 <Route path="/forget-password" element={<ForgetPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
             </Route>
-            <Route path="*" element={<Navigate to="/not-found" replace />} />
+            {/* <Route path="*" element={<Navigate to="/not-found" replace />} /> */}
         </Routes>
     );
 }
