@@ -1,9 +1,19 @@
 
 
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('order-status');
+  const cancelled = searchParams.get('cancelled');
+
+  useEffect(() => {
+    if (id) navigate(`/order-status/${id}`)
+    if (cancelled) toast.error("Order cancelled")
+  }, [id, cancelled])
 
   return (
     <div className="flex flex-col gap-12">

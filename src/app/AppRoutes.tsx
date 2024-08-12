@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import UserProfile from './pages/UserProfile';
@@ -35,7 +35,7 @@ const AppRoutes = () => {
                 <Route path="/forget-password" element={<ForgetPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
             </Route>
-            {/* <Route path="*" element={<Navigate to="/not-found" replace />} /> */}
+            <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Routes>
     );
 }
