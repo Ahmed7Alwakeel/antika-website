@@ -15,6 +15,7 @@ import {
 } from "../../../components/ui/form";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import LoadingButton from "../../../components/ui/LoadingButton";
 
 const formSchema = z.object({
     email: z.string().optional(),
@@ -29,12 +30,14 @@ type Props = {
     onSave: (userProfileData: UserFormData) => void;
     title?: string;
     buttonText?: string;
+    isLoading: boolean
 };
 
 const UserProfileForm = ({
     onSave,
     title = "User Profile",
     buttonText = "Submit",
+    isLoading
 }: Props) => {
     const userData = useSelector((state: RootState) => state.authData);
     const form = useForm<UserFormData>({
@@ -113,9 +116,13 @@ const UserProfileForm = ({
                         )}
                     />
                 </div>
-                <Button type="submit" className="bg-orange-500">
-                    {buttonText}
-                </Button>
+                {isLoading ?
+                    <LoadingButton />
+                    :
+                    <Button type="submit" className="bg-orange-500">
+                        {buttonText}
+                    </Button>
+                }
             </form>
         </Form>
     );
