@@ -6,8 +6,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/ca
 
 const OrderStatus = () => {
     const navigate= useNavigate()
-    const { order } = useGetAllOrders();
+    const { order,isLoading } = useGetAllOrders();
     const [orderData, setOrderData] = useState([])
+    const [customLoading,setCustomLoading]=useState(true)
+
+    useEffect(() => {
+        setTimeout(()=>{
+          setCustomLoading(false)
+        },2000)
+      }, [])
 
     useEffect(() => {
         order && setOrderData(order?.data?.data)
@@ -16,6 +23,11 @@ const OrderStatus = () => {
 
     if (!order || orderData.length === 0) {
         return "No orders found";
+    }
+    if ( isLoading || customLoading) {
+        return <div className="spinner">
+            <div className="loader"></div>
+        </div>;
     }
 
     return (
