@@ -14,8 +14,7 @@ const OrderStatus = () => {
         order && setOrderData({...order?.data?.data.order,...order?.data?.data.restaurant})
     }, [order])
 
-
-    if (!order || order.length === 0) {
+    if (!order?.data?.data.order || order?.data?.data.order.length === 0|| order==null) {
         return "No orders found";
     }
 

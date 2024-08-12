@@ -1,9 +1,9 @@
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, toast, ToastContainer } from "react-toastify";
 import Footer from "./Footer";
 import Header from "./Header";
 import Hero from "./Hero";
 import 'react-toastify/dist/ReactToastify.css';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -20,10 +20,15 @@ type Props = {
 const Layout = ({ children }: Props) => {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
-
+  const navigate = useNavigate()
   useEffect(() => {
     if (Cookies.get("token")) {
       generalGet('/user/profile').then(res => {
+        if (res.data.data.user.role == "admin") {
+          toast.error("inactive user")
+          dispatch(handleLogout())
+          navigate('/')
+        }
         const data = res.data.data.user
         dispatch(setUserData(data))
         Cookies.set("user_data", JSON.stringify(data))
@@ -32,6 +37,7 @@ const Layout = ({ children }: Props) => {
       }).catch(() => {
         dispatch(handleLogout())
         setLoading(false)
+        navigate('/')
       })
     } else {
       setLoading(false)
@@ -46,20 +52,20 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-    <GlobalLoader/>
-    <div className="flex flex-col min-h-screen">
-      <ToastContainer
-        autoClose={2000}
-        draggable={false}
-        hideProgressBar={true}
-        position='top-right'
-        transition={Slide}
-      />
-      <Header />
-      {pathname == "/" && <Hero />}
-      <div className="container mx-auto flex-1 py-10">{children}</div>
-      <Footer />
-    </div>
+      <GlobalLoader />
+      <div className="flex flex-col min-h-screen">
+        <ToastContainer
+          autoClose={2000}
+          draggable={false}
+          hideProgressBar={true}
+          position='top-right'
+          transition={Slide}
+        />
+        <Header />
+        {pathname == "/" && <Hero />}
+        <div className="container mx-auto flex-1 py-10">{children}</div>
+        <Footer />
+      </div>
     </>
   );
 };

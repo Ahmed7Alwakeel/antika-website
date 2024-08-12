@@ -29,7 +29,7 @@ const Branches = () => {
                                 <p className="m-0 text-xs bg-green-500 p-2 rounded-sm text-white">Available Delivery </p>
                             </CardHeader>
                             <CardContent >
-                                <div>Delivery price: <span className="font-bold">£{(item.deliveryPrice).toFixed(2)}</span></div>
+                                <div>Delivery price: <span className="font-bold">{(item.deliveryPrice).toFixed(2)}$</span></div>
                                 <div>
                                     Estimated time: <span className="font-bold">{item.estimatedDeliveryTime} mins</span>
                                 </div>

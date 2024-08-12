@@ -20,7 +20,7 @@ const getUserCoordinates = async (): Promise<string> => {
 }
 export const useGetMyRestaurant = () => {
 	const getMyRestaurantRequest = async () => {
-		const data = await generalGet(`/restaurant`)
+		const data = await generalGet(`/restaurant?published=true`)
 		return data.data.data
 	}
 
