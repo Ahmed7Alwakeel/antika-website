@@ -10,7 +10,7 @@ function App() {
         <title>Antika Cafe</title>
         <meta name="description" content="Antika is an e-cafe you get your order online" />
         <meta property="og:title" content="Antika Cafe" />
-        <meta property="og:description" content="Antika is an e-cafe you get your order online" />
+        <meta property="og:description" content="Antika is an e-cafe you can get your order online" />
         <meta property="og:image" content="/images/antika-logo.jpeg" />
       </Helmet>
       <AppRoutes />
