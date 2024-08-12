@@ -21,16 +21,16 @@ const OrderStatus = () => {
         order && setOrderData({...order?.data?.data.order,...order?.data?.data.restaurant})
     }, [order])
 
-    if (!order?.data?.data.order || order?.data?.data.order.length === 0|| order==null) {
-        return "No orders found";
-    }
-
+    
     if ( isLoading || customLoading) {
         return <div className="spinner">
             <div className="loader"></div>
         </div>;
     }
-
+    
+    if (!order?.data?.data.order || order?.data?.data.order.length === 0|| order==null) {
+        return "No orders found";
+    }
 
     return (
         <div className="space-y-10">

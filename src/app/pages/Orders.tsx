@@ -21,14 +21,14 @@ const OrderStatus = () => {
     }, [order])
     
 
-    if (!order || orderData.length === 0) {
-        return "No orders found";
-    }
     if ( isLoading || customLoading) {
         return <div className="spinner">
             <div className="loader"></div>
         </div>;
     }
+        if (!order || orderData.length === 0) {
+            return "No orders found";
+        }
 
     return (
         <div className="space-y-10">
