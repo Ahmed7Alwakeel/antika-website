@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { BrowserRouter as Router } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AuthCallbackPage from './pages/AuthCallbackPage';
 import UserProfile from './pages/UserProfile';
@@ -19,7 +18,6 @@ const AppRoutes = () => {
         return <div>Page Not Found</div>
     }
     return (
-        <Router>
             <Routes>
                 <Route path="/not-found" element={<NotFound />} />
                 <Route path="" element={<HomePage />} />
@@ -39,7 +37,6 @@ const AppRoutes = () => {
                 </Route>
                 <Route path="*" element={<Navigate to="/not-found" replace />} />
             </Routes>
-        </Router>
     );
 }
 
