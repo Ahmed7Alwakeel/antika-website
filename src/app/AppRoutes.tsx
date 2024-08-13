@@ -20,7 +20,7 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/not-found" element={<NotFound />} />
-            <Route path="/" element={<HomePage />} />
+            <Route path="" element={<HomePage />} />
             <Route path="/restaurant/:id" element={<RestaurantDetails />} />
             <Route path="/branches" element={<Branches />} />
             <Route element={<ProtectedRoute />}>
